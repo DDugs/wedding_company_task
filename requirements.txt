@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+motor
+pydantic[email]
+python-multipart
+passlib[bcrypt]
+pyjwt
+python-dotenv
+pytest
+pytest-asyncio
+httpx
+email-validator
+dnspython
