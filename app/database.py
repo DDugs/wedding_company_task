@@ -1,10 +1,11 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import certifi
 from typing import Optional
 
 # Default to localhost
 MONGO_DETAILS = os.getenv("MONGO_DETAILS", "mongodb://localhost:27017")
-client = AsyncIOMotorClient(MONGO_DETAILS)
+client = AsyncIOMotorClient(MONGO_DETAILS, tlsCAFile=certifi.where())
 
 # Master Database
 master_db = client.master_db
