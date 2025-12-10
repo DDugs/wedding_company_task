@@ -25,7 +25,8 @@ A FastAPI-based backend service for managing organizations in a multi-tenant arc
    pip install -r requirements.txt
    ```
 4. **Environment Setup**:
-   Create a `.env` file (see `.env.example`) or ensure MongoDB is at `mongodb://localhost:27017`.
+   Run `docker run -d -p 27017:27017 --name mongodb mongo:latest`
+   Ensure MongoDB is at `mongodb://localhost:27017`.
 
 ## Running the Application
 
