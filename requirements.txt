@@ -11,3 +11,4 @@ pytest-asyncio
 httpx
 email-validator
 dnspython
+certifi
