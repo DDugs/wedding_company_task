@@ -12,6 +12,22 @@ A FastAPI-based backend service for managing organizations in a multi-tenant arc
 - **Python 3.10+**
 - **MongoDB** running locally on port `27017` OR accessible via connection string.
 
+## Architecture & Design Summary
+### Scalability
+- This collection-per-tenant model scales really well for small–medium organizations, providing strong data isolation, supporting horizontal scaling through MongoDB sharding, and pairing really well with FastAPI + Motor for high-concurrency I/O-bound workloads.
+
+### Proposed Improvements
+- Add Redis caching to validate JWT and org metadata to reduce DB reads.
+
+- Use database-per-tenant for enterprise customers requiring stronger isolation and independent backup cycles. Offload heavy operations (deletions, emails, etc.) to background workers like Celery.
+
+### Trade-offs
+- MongoDB has practical limits on total collections, making this approach risky at very large tenant counts.
+
+- Migrations become heavier as data grows, including renaming collections.
+
+- Python isn't ideal for CPU-heavy tasks, though it's fine for CRUD-focused services.
+
 ## Installation
 
 1. **Clone the repository** (or navigate to directory).
