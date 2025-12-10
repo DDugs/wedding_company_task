@@ -39,6 +39,47 @@ The API will be available at `http://127.0.0.1:8000`.
 ## API Documentation
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
+## Usage
+1. Create a New Organization
+This creates the organization and the admin account.
+
+```bash
+curl -X POST "URL/org/create" ^
+     -H "Content-Type: application/json" ^
+     -d "{\"organization_name\": \"MyWedding\", \"email\": \"admin@wedding.com\", \"password\": \"secret123\"}"
+```
+
+2. Login as Admin
+Use the credentials you just created to get an access token.
+
+```bash
+curl -X POST "URL/admin/login" ^
+     -H "Content-Type: application/json" ^
+     -d "{\"email\": \"admin@wedding.com\", \"password\": \"secret123\"}"
+```
+Copy the access_token from the response for the next steps.
+
+3. Get Organization Details
+```bash
+curl "URL/org/get?organization_name=MyWedding"
+```
+
+4. Update Organization (Requires Token)
+Replace YOUR_TOKEN_HERE with the token from step 2.
+```bash
+curl -X PUT "URL/org/update" ^
+     -H "Authorization: Bearer YOUR_TOKEN_HERE" ^
+     -H "Content-Type: application/json" ^
+     -d "{\"organization_name\": \"MyWeddingUpdated\", \"email\": \"admin@wedding.com\", \"password\": \"newpassword123\"}"
+```
+
+5. Delete Organization (Requires Token)
+Note: Since we updated the name in the previous step, use the new name if that succeeded, otherwise use the old name. Also, if you changed the password, your old token is still valid until it expires, but for a real test you might want to login again with the new password.
+```bash
+curl -X DELETE "URL/org/delete?organization_name=MyWeddingUpdated" ^
+     -H "Authorization: Bearer YOUR_TOKEN_HERE"
+```
+
 ## Project Structure
 ```
 app/
