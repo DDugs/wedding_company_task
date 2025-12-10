@@ -37,9 +37,7 @@ uvicorn app.main:app --reload
 The API will be available at `http://127.0.0.1:8000`.
 
 ## API Documentation
-
-- **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ## Project Structure
 ```
